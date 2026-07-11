@@ -30,8 +30,7 @@ const TRIP = {
         note: "名古屋車站旁，隔天南下賢島最方便",
         lat: 35.1678564, lng: 136.8799096,
         voucher: "919 sotetsu fresa inn nagoya-shinkansenguchi住憑證.jpg"
-      },
-      luggage: "建議在名古屋就把大行李箱用宅配（takuhaibin）直接寄到 Day5 的露櫻藤丘飯店（連住3晚）；伊勢志摩＋離島這幾天只帶一個小旅行包輕裝移動。"
+      }
     },
     {
       id: "day1",
@@ -49,7 +48,7 @@ const TRIP = {
         lat: 34.3054114, lng: 136.8216889,
         voucher: "920寶生苑入住憑證.pdf"
       },
-      luggage: "今天拖行李搭しまかぜ南下賢島；大行李箱請放車廂端的行李置放區，別擋走道。若已宅配大箱，今天就超輕鬆。"
+      luggage: "今天拖行李搭しまかぜ南下賢島；大行李箱請放車廂端的行李置放區，別擋走道。"
     },
     {
       id: "day2",
