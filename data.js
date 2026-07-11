@@ -138,7 +138,7 @@ const TRIP = {
       title: "吉卜力公園 Day 1",
       timeline: [
         { kind: "transport", time: "", title: "藤が丘駅 → 愛・地球博記念公園駅", note: "Linimo磁浮列車，約17分", lat: 35.1824617, lng: 137.0213504 },
-        { kind: "sight", time: "全天", title: "吉卜力公園", note: "門票已搶到，園區內自由活動", lat: 35.1750406, lng: 137.0887716 }
+        { kind: "sight", time: "全天", title: "吉卜力公園", note: "門票已搶到，園區內自由活動。<a class=\"tl-gmap\" href=\"https://quickticket.moala.fun/books?id=e8bd0dfa-5d3f-43df-8cc9-eeef781efe30\" target=\"_blank\" rel=\"noopener\">🎫 9/25 電子票券 ↗</a>", lat: 35.1750406, lng: 137.0887716 }
       ],
       hotel: { name: "露櫻GRAND酒店（連住）", place: "露櫻GRAND酒店 名古屋藤丘站前", note: "", lat: 35.18311, lng: 137.0189254 },
       luggage: "連住露櫻，行李留飯店，輕裝去吉卜力公園（園區有投幣置物櫃可寄小包）。"
@@ -150,7 +150,7 @@ const TRIP = {
       title: "吉卜力公園 Day 2",
       timeline: [
         { kind: "transport", time: "", title: "藤が丘駅 → 愛・地球博記念公園駅", note: "Linimo磁浮列車，約17分", lat: 35.1824617, lng: 137.0213504 },
-        { kind: "sight", time: "全天", title: "吉卜力公園", note: "第二天，換不同區域慢慢逛", lat: 35.1750406, lng: 137.0887716 }
+        { kind: "sight", time: "全天", title: "吉卜力公園", note: "第二天，換不同區域慢慢逛。<a class=\"tl-gmap\" href=\"https://quickticket.moala.fun/books?id=e22175bd-fbff-4b80-b9fa-ad363209abbb\" target=\"_blank\" rel=\"noopener\">🎫 9/26 電子票券 ↗</a>", lat: 35.1750406, lng: 137.0887716 }
       ],
       hotel: { name: "露櫻GRAND酒店（連住）", place: "露櫻GRAND酒店 名古屋藤丘站前", note: "", lat: 35.18311, lng: 137.0189254 },
       luggage: "同樣連住露櫻，行李留飯店輕裝出門；園區走一整天，穿好走的鞋。"
