@@ -13,8 +13,8 @@ const ICONS = {
   note: "📍"
 };
 
-// 單日地圖上要顯示的「景點類」項目（transport / ferry 這種移動過程不畫）
-const SIGHT_KINDS = new Set(["sight", "food", "onsen", "sunrise", "note"]);
+// 交通類項目（在地圖上用「空心圖釘」跟景點的實心圖釘區分）
+const TRANSIT_KINDS = new Set(["transport", "ferry"]);
 
 // 產生 Google Maps 連結（免金鑰，點了會跳到手機的 Google Maps app）
 function gmapUrl(lat, lng) {
@@ -91,7 +91,7 @@ function renderDays() {
 
     let timelineHtml = day.timeline.map(item => {
       const hasGeo = item.lat && item.lng;
-      const clickable = hasGeo && SIGHT_KINDS.has(item.kind);
+      const clickable = hasGeo;
       const geoAttr = clickable ? ` data-lat="${item.lat}" data-lng="${item.lng}"` : "";
       const gmapLink = hasGeo
         ? `<a class="tl-gmap" href="${gmapUrl(item.lat, item.lng)}" target="_blank" rel="noopener">在 Google Maps 開啟 ↗</a>`
@@ -210,10 +210,19 @@ function drawAllMarkers() {
   if (bounds.length) map.fitBounds(bounds, { padding: [20, 20] });
 }
 
-// 產生「編號圖釘」：景點用序號 1,2,3…（1＝當天出發點），旅館用 🏨
-function routeIcon(label, color, isHotel) {
-  const style = isHotel ? "" : `background:${color}`;
-  const cls = "route-pin__badge" + (isHotel ? " route-pin__badge--hotel" : "");
+// 產生「編號圖釘」：
+//   sight   ＝實心（景點）  transit＝空心（交通）  hotel＝深色 🏨
+// 序號 1,2,3… 依當天行程順序，1＝當天出發點
+function routeIcon(label, color, variant) {
+  let cls = "route-pin__badge";
+  let style = `background:${color}`;
+  if (variant === "hotel") {
+    cls += " route-pin__badge--hotel";
+    style = "";
+  } else if (variant === "transit") {
+    cls += " route-pin__badge--transit";
+    style = `color:${color};border-color:${color}`;
+  }
   return L.divIcon({
     className: "route-pin",
     html: `<div class="${cls}" style="${style}">${label}</div>`,
@@ -229,20 +238,22 @@ function filterMapByDay(dayId) {
   if (!day) return;
 
   const color = dayColors[day.id];
-  let sights = day.timeline.filter(p => p.lat && p.lng && SIGHT_KINDS.has(p.kind));
-  if (sights.length === 0) sights = day.timeline.filter(p => p.lat && p.lng); // 整天都是交通就退回顯示全部
-
-  const points = sights.map(p => ({ lat: p.lat, lng: p.lng, title: p.title, note: p.note, isHotel: false }));
+  const points = day.timeline
+    .filter(p => p.lat && p.lng)
+    .map(p => ({
+      lat: p.lat, lng: p.lng, title: p.title, note: p.note,
+      variant: TRANSIT_KINDS.has(p.kind) ? "transit" : "sight"
+    }));
   if (day.hotel && day.hotel.lat) {
-    points.push({ lat: day.hotel.lat, lng: day.hotel.lng, title: day.hotel.name, note: day.hotel.note, isHotel: true });
+    points.push({ lat: day.hotel.lat, lng: day.hotel.lng, title: day.hotel.name, note: day.hotel.note, variant: "hotel" });
   }
 
   const latlngs = [];
   let n = 0;
   points.forEach(p => {
-    const label = p.isHotel ? "🏨" : String(++n);
-    const prefix = p.isHotel ? "🏨 " : label + ". ";
-    L.marker([p.lat, p.lng], { icon: routeIcon(label, color, p.isHotel) })
+    const label = p.variant === "hotel" ? "🏨" : String(++n);
+    const prefix = p.variant === "hotel" ? "🏨 " : label + ". ";
+    L.marker([p.lat, p.lng], { icon: routeIcon(label, color, p.variant) })
       .bindPopup(`<b>${day.seal} ${day.dateLabel}</b><br>${prefix}${p.title}${p.note ? "<br>" + p.note : ""}`)
       .addTo(markerLayer);
     latlngs.push([p.lat, p.lng]);
