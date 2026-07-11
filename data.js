@@ -119,7 +119,7 @@ const TRIP = {
       timeline: [
         { kind: "sight", time: "上午", title: "日間賀島悠閒早晨", note: "大海老退房後環島散步、看章魚裝置藝術；11:40 搭船離開", place: "日間賀島", lat: 34.7051045, lng: 137.0060226 },
         { kind: "ferry", time: "11:40", title: "日間賀島 → 河和港", note: "11:40 日間賀島西港發 → 12:00 抵河和（約20分）。<a class=\"tl-gmap\" href=\"https://www.meikaijo.co.jp/timetable\" target=\"_blank\" rel=\"noopener\">名鐵海上觀光船官方時刻表 ↗</a><a class=\"tl-imglink\" href=\"924boat.jpg\" target=\"_blank\" rel=\"noopener\"><img class=\"tl-img\" src=\"924boat.jpg\" alt=\"名鐵海上觀光船 日間賀島→河和 時刻表\" loading=\"lazy\"></a>", lat: 34.7781055, lng: 136.9118864 },
-        { kind: "transport", time: "", title: "河和港 → 河和駅", note: "步行約7分", lat: 34.7862, lng: 136.935 },
+        { kind: "transport", time: "", title: "河和港 → 河和駅", note: "步行約5分（或搭河和港免費接駁巴士約3分）", lat: 34.77806, lng: 136.91194 },
         { kind: "transport", time: "", title: "河和駅 → 名鐵名古屋駅", note: "名鐵特急，約50分", lat: 35.1699, lng: 136.8817 },
         { kind: "sight", time: "下午", title: "名古屋市區逛街", note: "名古屋城 / 大須觀音商店街，自由運用", place: "名古屋城", lat: 35.1847501, lng: 136.8996883 },
         { kind: "transport", time: "", title: "名古屋駅 → 藤が丘駅", note: "地下鐵東山線，約30分", lat: 35.1824617, lng: 137.0213504 }
