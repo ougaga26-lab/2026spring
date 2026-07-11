@@ -128,14 +128,6 @@ body {
   width: 100%;
 }
 
-.mapcard__caption {
-  padding: 10px 14px;
-  font-size: 12px;
-  color: var(--ink-faint);
-  font-family: var(--font-mono);
-  border-top: 1px dashed var(--line);
-}
-
 /* ---------- Day cards ---------- */
 
 .day {

@@ -176,11 +176,6 @@ function filterMapByDay(dayId) {
   if (latlngs.length) map.fitBounds(latlngs, { padding: [30, 30], maxZoom: 13 });
 }
 
-document.getElementById("showAllBtn").addEventListener("click", () => {
-  drawAllMarkers();
-  setActiveNav(null);
-});
-
 // ---------- Init ----------
 
 renderHero();
