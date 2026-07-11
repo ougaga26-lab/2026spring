@@ -58,7 +58,7 @@ const TRIP = {
         { kind: "transport", time: "10:00", title: "賢島駅 → 鳥羽駅", note: "10:00 賢島寶生苑退房；近鐵特急約29分，約11:00到鳥羽。行李寄鳥羽駅寄物櫃", lat: 34.3054114, lng: 136.8216889 },
         { kind: "transport", time: "11:20", title: "鳥羽バスセンター → 相差（石神さん前）", note: "かもめ巴士，11:20 鳥羽バスセンター發 → 12:00 相差（石神さん前）。<a class=\"tl-gmap\" href=\"https://www.city.toba.mie.jp/soshiki/t_kanri/gyomu/doro_kotsu/kokyo_kotsu/1642.html\" target=\"_blank\" rel=\"noopener\">かもめ巴士時刻表 ↗</a><a class=\"tl-imglink\" href=\"kamomebasudaiya3.jpg\" target=\"_blank\" rel=\"noopener\"><img class=\"tl-img\" src=\"kamomebasudaiya3.jpg\" alt=\"かもめ巴士 鳥羽↔相差 時刻表\" loading=\"lazy\"></a>", place: "鳥羽バスセンター", lat: 34.4875194, lng: 136.8434354 },
         { kind: "food", time: "午餐", title: "海女小屋 まえの浜（前の浜）", note: "相差海女現烤海鮮，需事先預約；吃完在漁村附近悠閒走走", lat: 34.3883057, lng: 136.908493 },
-        { kind: "transport", time: "下午", title: "相差 → 鳥羽バスセンター", note: "かもめ巴士約40分（回程）", lat: 34.4875194, lng: 136.8434354 },
+        { kind: "transport", time: "14:59", title: "相差 → 鳥羽バスセンター", note: "かもめ巴士（回程）：14:59發 → 15:46 到鳥羽，或 16:39發 → 17:16 到", lat: 34.4875194, lng: 136.8434354 },
         { kind: "transport", time: "", title: "鳥羽駅 → 二見浦駅", note: "JR參宮線約10分；出發前取回寄物櫃行李", lat: 34.5065, lng: 136.7862 },
         { kind: "food", time: "傍晚", title: "旅館晚餐（海鮮）", note: "二見浦岩戸館用晚餐；若未含晚餐，改在鳥羽先吃海鮮再過來", place: "二見浦岩戸館", lat: 34.5081997, lng: 136.7855235 }
       ],
