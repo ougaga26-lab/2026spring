@@ -1,0 +1,366 @@
+/* ============================================================
+   設計系統
+   概念：集章旅行手帳（御朱印帳）——每天一枚印章，貼在手帳頁上
+   ============================================================ */
+
+:root {
+  --paper: #f6f4ee;
+  --paper-deep: #eeeadd;
+  --ink: #1c2b46;
+  --ink-soft: #46536b;
+  --ink-faint: #8992a3;
+  --vermillion: #b8452e;
+  --vermillion-deep: #96361f;
+  --gold: #ab8226;
+  --sea: #2c6b6b;
+  --line: #d9d1bd;
+  --white: #fffdf8;
+
+  --font-display: "Noto Serif TC", serif;
+  --font-body: "Noto Sans TC", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --radius: 14px;
+  --max-w: 480px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(184, 69, 46, 0.04), transparent 40%),
+    radial-gradient(circle at 80% 60%, rgba(44, 107, 107, 0.04), transparent 45%);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 16px 48px;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  padding: 40px 16px 28px;
+  text-align: center;
+  position: relative;
+}
+
+.hero__seal {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 18px;
+  border: 2.5px solid var(--vermillion);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--vermillion);
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  transform: rotate(-6deg);
+  box-shadow: inset 0 0 0 1px rgba(184, 69, 46, 0.25);
+  opacity: 0.92;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 1.4;
+  margin: 0 0 6px;
+  letter-spacing: 0.02em;
+}
+
+.hero__subtitle {
+  color: var(--ink-soft);
+  font-size: 14px;
+  margin: 0 0 14px;
+  letter-spacing: 0.06em;
+}
+
+.hero__dates {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--sea);
+  letter-spacing: 0.05em;
+  margin-bottom: 20px;
+}
+
+.hero__stats {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--line);
+}
+
+.stat__value {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.stat__label {
+  font-size: 11px;
+  color: var(--ink-faint);
+  letter-spacing: 0.08em;
+}
+
+/* ---------- Day nav (stamp rail) ---------- */
+
+.daynav {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 4px 14px;
+  margin-bottom: 8px;
+  scrollbar-width: none;
+}
+.daynav::-webkit-scrollbar { display: none; }
+
+.daynav__item {
+  flex: 0 0 auto;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1.5px solid var(--line);
+  background: var(--white);
+  color: var(--ink-soft);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.daynav__item.is-active {
+  border-color: var(--vermillion);
+  color: var(--vermillion);
+  background: rgba(184, 69, 46, 0.08);
+  transform: scale(1.08);
+}
+
+/* ---------- Map ---------- */
+
+.mapcard {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  margin-bottom: 28px;
+  background: var(--white);
+}
+
+#map {
+  height: 260px;
+  width: 100%;
+}
+
+.mapcard__caption {
+  padding: 10px 14px;
+  font-size: 12px;
+  color: var(--ink-faint);
+  font-family: var(--font-mono);
+  border-top: 1px dashed var(--line);
+}
+
+/* ---------- Day cards ---------- */
+
+.day {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  margin-bottom: 14px;
+  overflow: hidden;
+  scroll-margin-top: 12px;
+}
+
+.day__header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  cursor: pointer;
+  user-select: none;
+  background: var(--white);
+  border: none;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+}
+
+.day__seal {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid var(--vermillion);
+  color: var(--vermillion);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-5deg);
+  transition: transform 0.25s ease;
+}
+
+.day.is-open .day__seal {
+  transform: rotate(-5deg) scale(1.12);
+}
+
+.day__heading { flex: 1; min-width: 0; }
+
+.day__date {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--sea);
+  letter-spacing: 0.04em;
+}
+
+.day__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16.5px;
+  margin-top: 2px;
+}
+
+.day__chevron {
+  flex: 0 0 auto;
+  color: var(--ink-faint);
+  transition: transform 0.25s ease;
+}
+
+.day.is-open .day__chevron { transform: rotate(180deg); }
+
+.day__body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+.day.is-open .day__body {
+  max-height: 2000px;
+}
+
+.day__timeline {
+  padding: 4px 18px 18px 18px;
+  position: relative;
+}
+
+.tl-item {
+  position: relative;
+  padding: 0 0 16px 26px;
+  border-left: 1.5px dashed var(--line);
+  margin-left: 9px;
+}
+
+.tl-item:last-child { border-left-color: transparent; padding-bottom: 0; }
+
+.tl-item::before {
+  content: "";
+  position: absolute;
+  left: -6.5px;
+  top: 3px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--paper-deep);
+  border: 1.5px solid var(--ink-faint);
+}
+
+.tl-item[data-kind="transport"]::before { border-color: var(--sea); background: var(--sea); }
+.tl-item[data-kind="food"]::before { border-color: var(--gold); background: var(--gold); }
+.tl-item[data-kind="sight"]::before { border-color: var(--vermillion); background: var(--vermillion); }
+.tl-item[data-kind="sunrise"]::before { border-color: var(--vermillion); background: var(--vermillion); }
+.tl-item[data-kind="ferry"]::before { border-color: var(--sea); background: var(--sea); }
+.tl-item[data-kind="onsen"]::before { border-color: var(--gold); background: var(--gold); }
+
+.tl-time {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-faint);
+  margin-bottom: 2px;
+}
+
+.tl-title {
+  font-weight: 700;
+  font-size: 14.5px;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tl-icon { font-size: 14px; }
+
+.tl-note {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-top: 2px;
+}
+
+.hotel {
+  margin: 4px 18px 18px;
+  padding: 12px 14px;
+  background: var(--paper-deep);
+  border-radius: 10px;
+  border: 1px dashed var(--line);
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.hotel__icon { font-size: 18px; line-height: 1; margin-top: 1px; }
+
+.hotel__name { font-weight: 700; font-size: 13.5px; }
+.hotel__note { font-size: 12px; color: var(--ink-soft); margin-top: 2px; }
+
+.alert {
+  margin: 0 18px 18px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(184, 69, 46, 0.08);
+  border: 1px solid rgba(184, 69, 46, 0.25);
+  color: var(--vermillion-deep);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* ---------- Footer ---------- */
+
+.footer {
+  text-align: center;
+  padding: 28px 16px 8px;
+  color: var(--ink-faint);
+  font-size: 11.5px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.03em;
+}
+
+/* Leaflet popup theming */
+.leaflet-popup-content-wrapper {
+  border-radius: 10px;
+  font-family: var(--font-body);
+}
+.leaflet-popup-content { font-size: 13px; margin: 10px 12px; }
+.leaflet-popup-content b { font-family: var(--font-display); }
