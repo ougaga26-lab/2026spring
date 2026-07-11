@@ -15,15 +15,7 @@ const ICONS = {
 
 function renderHero() {
   document.getElementById("heroTitle").textContent = TRIP.title;
-  document.getElementById("heroSubtitle").textContent = TRIP.subtitle;
   document.getElementById("heroDates").textContent = TRIP.dateRange;
-
-  const statsEl = document.getElementById("heroStats");
-  TRIP.stats.forEach(s => {
-    const div = document.createElement("div");
-    div.innerHTML = `<div class="stat__value">${s.value}</div><div class="stat__label">${s.label}</div>`;
-    statsEl.appendChild(div);
-  });
 }
 
 function renderDayNav() {
@@ -34,8 +26,6 @@ function renderDayNav() {
     btn.textContent = day.seal;
     btn.dataset.dayId = day.id;
     btn.addEventListener("click", () => {
-      document.getElementById(day.id).scrollIntoView({ behavior: "smooth", block: "start" });
-      openDay(day.id);
       setActiveNav(day.id);
       filterMapByDay(day.id);
     });
@@ -103,13 +93,6 @@ function renderDays() {
     });
 
     container.appendChild(el);
-  });
-}
-
-function openDay(dayId) {
-  document.querySelectorAll(".day").forEach(el => {
-    el.classList.toggle("is-open", el.id === dayId);
-    el.querySelector(".day__header").setAttribute("aria-expanded", el.id === dayId);
   });
 }
 
