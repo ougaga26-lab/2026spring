@@ -375,6 +375,19 @@ body.day-mode .mapcard {
 
 .hotel__body { flex: 1; min-width: 0; }
 
+.hotel__voucher {
+  display: inline-block;
+  margin-top: 5px;
+  margin-left: 14px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(171, 130, 38, 0.45);
+  letter-spacing: 0.02em;
+}
+.hotel__voucher:hover { color: var(--vermillion); border-bottom-color: rgba(184, 69, 46, 0.5); }
+
 /* ---------- 地圖編號圖釘 ---------- */
 
 .route-pin { background: none; border: none; }

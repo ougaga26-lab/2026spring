@@ -28,7 +28,8 @@ const TRIP = {
       hotel: {
         name: "相鐵FRESA INN 名古屋站新幹線口",
         note: "名古屋車站旁，隔天南下賢島最方便",
-        lat: 35.1678564, lng: 136.8799096
+        lat: 35.1678564, lng: 136.8799096,
+        voucher: "919 sotetsu fresa inn nagoya-shinkansenguchi住憑證.jpg"
       },
       luggage: "建議在名古屋就把大行李箱用宅配（takuhaibin）直接寄到 Day5 的露櫻藤丘飯店（連住3晚）；伊勢志摩＋離島這幾天只帶一個小旅行包輕裝移動。"
     },
@@ -45,7 +46,8 @@ const TRIP = {
       hotel: {
         name: "賢島寶生苑",
         note: "車站步行約5分，溫泉旅館",
-        lat: 34.3054114, lng: 136.8216889
+        lat: 34.3054114, lng: 136.8216889,
+        voucher: "920寶生苑入住憑證.pdf"
       },
       luggage: "今天拖行李搭しまかぜ南下賢島；大行李箱請放車廂端的行李置放區，別擋走道。若已宅配大箱，今天就超輕鬆。"
     },
@@ -65,7 +67,8 @@ const TRIP = {
       hotel: {
         name: "二見浦岩戸館",
         note: "近二見興玉神社，隔天不用早起趕車就能看日出",
-        lat: 34.5081997, lng: 136.7855235
+        lat: 34.5081997, lng: 136.7855235,
+        voucher: "921二見浦岩戸住憑證.pdf"
       },
       luggage: "換旅館日。白天在鳥羽駅寄物櫃放行李，傍晚搭 JR 前再取出帶去二見浦，就不用拖著跑相差。"
     },
@@ -86,7 +89,8 @@ const TRIP = {
       hotel: {
         name: "En Hotel Ise",
         note: "伊勢市駅周邊，走路到車站、商店都方便",
-        lat: 34.4920599, lng: 136.7131271
+        lat: 34.4920599, lng: 136.7131271,
+        voucher: "922 en hotel lse住憑證.jpg"
       },
       luggage: "早上退房二見浦岩戸館，行李帶到伊勢後先去 En Hotel Ise 寄放（飯店就在伊勢市駅旁，一般可提早寄放行李），再輕裝去逛外宮、內宮、托福橫町。"
     },
@@ -106,7 +110,8 @@ const TRIP = {
       hotel: {
         name: "大海老",
         note: "島上知名章魚河豚料理民宿，15:00起入住",
-        lat: 34.7038953, lng: 136.9980804
+        lat: 34.7038953, lng: 136.9980804,
+        voucher: "923海老入住憑證.pdf"
       },
       alert: "船班已依現行班表：渡輪 13:40 鳥羽發 → 14:35 伊良湖；名鐵船 15:05 伊良湖發 → 15:40 日間賀島。名鐵伊良湖線班次少，2026年9月正式時刻約8月中公布，屆時再核對並提前訂位。",
       luggage: "上午逛鳥羽水族館時，行李先寄鳥羽駅寄物櫃；接著兩趟船＋登離島，務必輕裝、只帶登船小包，大箱理想上已宅配到名古屋。島上民宿大海老需步行進出。"
@@ -127,7 +132,8 @@ const TRIP = {
       hotel: {
         name: "露櫻GRAND酒店 名古屋藤丘站前",
         note: "藤丘車站前，吉卜力公園進出都方便（連住3晚）",
-        lat: 35.18311, lng: 137.0189254
+        lat: 35.18311, lng: 137.0189254,
+        voucher: "924 hotel route inn grand nagoya fujigaoka ekimae住憑證.jpg"
       },
       luggage: "離島退房搭船＋電車回名古屋。若先前有宅配，今天入住露櫻就能拿回大行李；沒宅配就一路拖回，河和換車時留意月台電梯。"
     },
@@ -140,7 +146,7 @@ const TRIP = {
         { kind: "transport", time: "", title: "藤が丘駅 → 愛・地球博記念公園駅", note: "Linimo磁浮列車，約17分", lat: 35.1824617, lng: 137.0213504 },
         { kind: "sight", time: "全天", title: "吉卜力公園", note: "門票已搶到，園區內自由活動。<a class=\"tl-gmap\" href=\"https://quickticket.moala.fun/books?id=e8bd0dfa-5d3f-43df-8cc9-eeef781efe30\" target=\"_blank\" rel=\"noopener\">🎫 9/25 電子票券 ↗</a>", lat: 35.1750406, lng: 137.0887716 }
       ],
-      hotel: { name: "露櫻GRAND酒店（連住）", place: "露櫻GRAND酒店 名古屋藤丘站前", note: "", lat: 35.18311, lng: 137.0189254 },
+      hotel: { name: "露櫻GRAND酒店（連住）", place: "露櫻GRAND酒店 名古屋藤丘站前", note: "", lat: 35.18311, lng: 137.0189254, voucher: "924 hotel route inn grand nagoya fujigaoka ekimae住憑證.jpg" },
       luggage: "連住露櫻，行李留飯店，輕裝去吉卜力公園（園區有投幣置物櫃可寄小包）。"
     },
     {
@@ -152,7 +158,7 @@ const TRIP = {
         { kind: "transport", time: "", title: "藤が丘駅 → 愛・地球博記念公園駅", note: "Linimo磁浮列車，約17分", lat: 35.1824617, lng: 137.0213504 },
         { kind: "sight", time: "全天", title: "吉卜力公園", note: "第二天，換不同區域慢慢逛。<a class=\"tl-gmap\" href=\"https://quickticket.moala.fun/books?id=e22175bd-fbff-4b80-b9fa-ad363209abbb\" target=\"_blank\" rel=\"noopener\">🎫 9/26 電子票券 ↗</a>", lat: 35.1750406, lng: 137.0887716 }
       ],
-      hotel: { name: "露櫻GRAND酒店（連住）", place: "露櫻GRAND酒店 名古屋藤丘站前", note: "", lat: 35.18311, lng: 137.0189254 },
+      hotel: { name: "露櫻GRAND酒店（連住）", place: "露櫻GRAND酒店 名古屋藤丘站前", note: "", lat: 35.18311, lng: 137.0189254, voucher: "924 hotel route inn grand nagoya fujigaoka ekimae住憑證.jpg" },
       luggage: "同樣連住露櫻，行李留飯店輕裝出門；園區走一整天，穿好走的鞋。"
     },
     {

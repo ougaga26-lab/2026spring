@@ -132,6 +132,7 @@ function renderDays() {
           <div class="hotel__name">${day.hotel.name}</div>
           ${day.hotel.note ? `<div class="hotel__note">${day.hotel.note}</div>` : ""}
           ${day.hotel.lat ? `<a class="hotel__gmap" href="${gmapUrl(day.hotel.place || day.hotel.name)}" target="_blank" rel="noopener">在 Google Maps 開啟 ↗</a>` : ""}
+          ${day.hotel.voucher ? `<a class="hotel__voucher" href="${encodeURI(day.hotel.voucher)}" target="_blank" rel="noopener">入住憑證 ↗</a>` : ""}
         </div>
       </div>
     ` : "";
