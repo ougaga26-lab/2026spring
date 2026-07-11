@@ -363,6 +363,16 @@ body.day-mode .mapcard {
   border-bottom-color: rgba(184, 69, 46, 0.5);
 }
 
+/* 行程備註內嵌的時刻表圖（點擊放大） */
+.tl-imglink { display: block; margin-top: 8px; }
+.tl-img {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+}
+
 .hotel__body { flex: 1; min-width: 0; }
 
 /* ---------- 地圖編號圖釘 ---------- */

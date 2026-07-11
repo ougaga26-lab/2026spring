@@ -99,8 +99,8 @@ const TRIP = {
         { kind: "transport", time: "上午", title: "En Hotel Ise 退房", note: "JR參宮線 伊勢市駅 → 鳥羽駅，約20分", place: "En Hotel Ise", lat: 34.4920599, lng: 136.7131271 },
         { kind: "transport", time: "", title: "抵達鳥羽駅", note: "行李寄鳥羽駅寄物櫃；水族館與渡輪乘船處都在鳥羽港一帶", lat: 34.4849, lng: 136.8434 },
         { kind: "sight", time: "上午", title: "鳥羽水族館", note: "近千種海洋生物，儒艮是招牌明星；就在鳥羽港、離渡輪乘船處步行約5分，逛約2.5h＋午餐", lat: 34.4815825, lng: 136.8456926 },
-        { kind: "ferry", time: "13:40", title: "鳥羽港搭伊勢灣渡輪", note: "13:40 鳥羽發 → 14:35 抵伊良湖（航程約55分）；轉名鐵船約30分緩衝。<a class=\"tl-gmap\" href=\"https://www.isewanferry.co.jp/publics/index/60/\" target=\"_blank\" rel=\"noopener\">伊勢灣渡輪官方時刻表 ↗</a>", place: "鳥羽港", lat: 34.4806, lng: 136.8458 },
-        { kind: "ferry", time: "15:05", title: "伊良湖搭名鐵海上觀光船", note: "15:05 伊良湖發 → 經篠島約40分 → 15:40 日間賀島西港。9/23秋分假日班（11:05／15:05／16:05）。<a class=\"tl-gmap\" href=\"https://www.meikaijo.co.jp/timetable\" target=\"_blank\" rel=\"noopener\">名鐵海上觀光船官方時刻表 ↗</a>", place: "伊良湖港", lat: 34.5843963, lng: 137.019651 },
+        { kind: "ferry", time: "13:40", title: "鳥羽港搭伊勢灣渡輪", note: "13:40 鳥羽發 → 14:35 抵伊良湖（航程約55分）；轉名鐵船約30分緩衝。<a class=\"tl-gmap\" href=\"https://www.isewanferry.co.jp/publics/index/60/\" target=\"_blank\" rel=\"noopener\">伊勢灣渡輪官方時刻表 ↗</a><a class=\"tl-imglink\" href=\"923boat1.jpg\" target=\"_blank\" rel=\"noopener\"><img class=\"tl-img\" src=\"923boat1.jpg\" alt=\"伊勢灣渡輪 鳥羽→伊良湖 時刻表\" loading=\"lazy\"></a>", place: "鳥羽港", lat: 34.4806, lng: 136.8458 },
+        { kind: "ferry", time: "15:05", title: "伊良湖搭名鐵海上觀光船", note: "15:05 伊良湖發 → 經篠島約40分 → 15:40 日間賀島西港。9/23秋分假日班（11:05／15:05／16:05）。<a class=\"tl-gmap\" href=\"https://www.meikaijo.co.jp/timetable\" target=\"_blank\" rel=\"noopener\">名鐵海上觀光船官方時刻表 ↗</a><a class=\"tl-imglink\" href=\"923boat2.jpg\" target=\"_blank\" rel=\"noopener\"><img class=\"tl-img\" src=\"923boat2.jpg\" alt=\"名鐵海上觀光船 伊良湖→日間賀島 時刻表\" loading=\"lazy\"></a>", place: "伊良湖港", lat: 34.5843963, lng: 137.019651 },
         { kind: "sight", time: "15:40", title: "抵達日間賀島", note: "章魚造型裝置藝術很好拍，環島悠閒", lat: 34.7051045, lng: 137.0060226 }
       ],
       hotel: {
@@ -118,7 +118,7 @@ const TRIP = {
       title: "日間賀島 → 河和 → 名古屋 → 藤丘",
       timeline: [
         { kind: "sight", time: "上午", title: "日間賀島悠閒早晨", note: "大海老退房後環島散步、看章魚裝置藝術；11:40 搭船離開", place: "日間賀島", lat: 34.7051045, lng: 137.0060226 },
-        { kind: "ferry", time: "11:40", title: "日間賀島 → 河和港", note: "11:40 日間賀島西港發 → 12:00 抵河和（約20分）。<a class=\"tl-gmap\" href=\"https://www.meikaijo.co.jp/timetable\" target=\"_blank\" rel=\"noopener\">名鐵海上觀光船官方時刻表 ↗</a>", lat: 34.7781055, lng: 136.9118864 },
+        { kind: "ferry", time: "11:40", title: "日間賀島 → 河和港", note: "11:40 日間賀島西港發 → 12:00 抵河和（約20分）。<a class=\"tl-gmap\" href=\"https://www.meikaijo.co.jp/timetable\" target=\"_blank\" rel=\"noopener\">名鐵海上觀光船官方時刻表 ↗</a><a class=\"tl-imglink\" href=\"924boat.jpg\" target=\"_blank\" rel=\"noopener\"><img class=\"tl-img\" src=\"924boat.jpg\" alt=\"名鐵海上觀光船 日間賀島→河和 時刻表\" loading=\"lazy\"></a>", lat: 34.7781055, lng: 136.9118864 },
         { kind: "transport", time: "", title: "河和港 → 河和駅", note: "步行約7分", lat: 34.7862, lng: 136.935 },
         { kind: "transport", time: "", title: "河和駅 → 名鐵名古屋駅", note: "名鐵特急，約50分", lat: 35.1699, lng: 136.8817 },
         { kind: "sight", time: "下午", title: "名古屋市區逛街", note: "名古屋城 / 大須觀音商店街，自由運用", place: "名古屋城", lat: 35.1847501, lng: 136.8996883 },
