@@ -55,8 +55,8 @@ const TRIP = {
       dateLabel: "9/21（一）",
       title: "賢島 → 相差 → 鳥羽 → 二見浦",
       timeline: [
-        { kind: "transport", time: "08:30", title: "賢島駅 → 鳥羽駅", note: "近鐵特急約29分；行李寄鳥羽駅寄物櫃", lat: 34.4849, lng: 136.8434 },
-        { kind: "transport", time: "09:15", title: "鳥羽駅 → 相差", note: "かもめ巴士約40分，班次少需先查時刻表", lat: 34.3906, lng: 136.894 },
+        { kind: "transport", time: "08:30", title: "賢島駅 → 鳥羽駅", note: "近鐵特急約29分；行李寄鳥羽駅寄物櫃", lat: 34.3054114, lng: 136.8216889 },
+        { kind: "transport", time: "09:15", title: "鳥羽駅 → 相差", note: "かもめ巴士約40分，班次少需先查時刻表", lat: 34.4849, lng: 136.8434 },
         { kind: "food", time: "11:30", title: "海女小屋 まえの浜（前の浜）", note: "相差海女現烤海鮮，需事先預約；吃完在漁村附近走走", lat: 34.3883057, lng: 136.908493 },
         { kind: "transport", time: "13:00", title: "相差 → 鳥羽駅", note: "かもめ巴士約40分", lat: 34.4849, lng: 136.8434 },
         { kind: "sight", time: "14:00", title: "鳥羽水族館", note: "近千種海洋生物，儒艮是招牌明星；站旁步行約10分，約逛2.5h", lat: 34.4815825, lng: 136.8456926 },
@@ -138,7 +138,7 @@ const TRIP = {
       dateLabel: "9/25（五）",
       title: "吉卜力公園 Day 1",
       timeline: [
-        { kind: "transport", time: "", title: "藤が丘駅 → 愛・地球博記念公園駅", note: "Linimo磁浮列車，約17分", lat: 35.1750406, lng: 137.0887716 },
+        { kind: "transport", time: "", title: "藤が丘駅 → 愛・地球博記念公園駅", note: "Linimo磁浮列車，約17分", lat: 35.1824617, lng: 137.0213504 },
         { kind: "sight", time: "全天", title: "吉卜力公園", note: "門票已搶到，園區內自由活動", lat: 35.1750406, lng: 137.0887716 }
       ],
       hotel: { name: "露櫻GRAND酒店（連住）", place: "露櫻GRAND酒店 名古屋藤丘站前", note: "", lat: 35.18311, lng: 137.0189254 },
@@ -150,7 +150,7 @@ const TRIP = {
       dateLabel: "9/26（六）",
       title: "吉卜力公園 Day 2",
       timeline: [
-        { kind: "transport", time: "", title: "藤が丘駅 → 愛・地球博記念公園駅", note: "Linimo磁浮列車，約17分", lat: 35.1750406, lng: 137.0887716 },
+        { kind: "transport", time: "", title: "藤が丘駅 → 愛・地球博記念公園駅", note: "Linimo磁浮列車，約17分", lat: 35.1824617, lng: 137.0213504 },
         { kind: "sight", time: "全天", title: "吉卜力公園", note: "第二天，換不同區域慢慢逛", lat: 35.1750406, lng: 137.0887716 }
       ],
       hotel: { name: "露櫻GRAND酒店（連住）", place: "露櫻GRAND酒店 名古屋藤丘站前", note: "", lat: 35.18311, lng: 137.0189254 },
@@ -162,7 +162,7 @@ const TRIP = {
       dateLabel: "9/27（日）",
       title: "藤丘 → 機場",
       timeline: [
-        { kind: "transport", time: "", title: "藤が丘駅6號乘車處 → 中部國際空港", note: "名鐵巴士直達，約55分，班次不多請提前查當日時刻", lat: 34.8573624, lng: 136.8107557 },
+        { kind: "transport", time: "", title: "藤が丘駅6號乘車處 → 中部國際空港", note: "名鐵巴士直達，約55分，班次不多請提前查當日時刻", lat: 35.1824617, lng: 137.0213504 },
         { kind: "note", time: "", title: "搭機返程", note: "國際線建議提前2-3小時到機場", place: "中部国際空港", lat: 34.8584, lng: 136.8051 }
       ],
       hotel: null,
