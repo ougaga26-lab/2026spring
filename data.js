@@ -76,13 +76,13 @@ const TRIP = {
       dateLabel: "9/22（二）",
       title: "二見浦 → 伊勢",
       timeline: [
-        { kind: "sunrise", time: "清晨", title: "夫婦岩看日出", note: "住宿步行約15-20分", place: "夫婦岩", lat: 34.5089247, lng: 136.7878294 },
-        { kind: "food", time: "", title: "二見浦BBQ場", note: "生蠔吃到飽", lat: 34.508856, lng: 136.7761429 },
-        { kind: "transport", time: "", title: "二見浦駅 → 伊勢市駅", note: "JR參宮線，約10分", lat: 34.5065, lng: 136.7862 },
-        { kind: "food", time: "午餐", title: "豚捨 外宮前店", note: "明治年間老店，伊勢牛可樂餅、豚排必點", lat: 34.4885142, lng: 136.7074453 },
+        { kind: "sunrise", time: "清晨", title: "夫婦岩看日出", note: "住宿步行約15-20分；看完在二見浦海邊附近走走", place: "夫婦岩", lat: 34.5089247, lng: 136.7878294 },
+        { kind: "food", time: "午餐", title: "二見浦BBQ場", note: "生蠔吃到飽；散步後接近中午來吃，當作午餐", lat: 34.508856, lng: 136.7761429 },
+        { kind: "transport", time: "", title: "二見浦駅 → 伊勢市駅", note: "JR參宮線約10分；到站先到 En Hotel Ise 寄放行李，再輕裝出發", lat: 34.5065, lng: 136.7862 },
         { kind: "sight", time: "下午", title: "伊勢神宮（外宮→內宮）", note: "外宮前步行參拜；外宮→內宮搭巴士約15分", lat: 34.4550157, lng: 136.7251851 },
         { kind: "sight", time: "傍晚", title: "托福橫町・おかげ橫丁", note: "內宮旁步行即達，老街小吃伴手禮", place: "おかげ横丁", lat: 34.4624294, lng: 136.7228539 },
-        { kind: "transport", time: "", title: "內宮 → 伊勢市駅（回飯店）", note: "バス約20分，回 En Hotel Ise", lat: 34.4899, lng: 136.707 }
+        { kind: "transport", time: "", title: "內宮 → 伊勢市駅", note: "バス約20分，回外宮／伊勢市駅一帶", lat: 34.4899, lng: 136.707 },
+        { kind: "food", time: "晚餐", title: "豚捨 外宮前店", note: "明治年間老店，伊勢牛可樂餅、豚排必點；外宮前、離 En Hotel Ise 很近，吃完散步回飯店", lat: 34.4885142, lng: 136.7074453 }
       ],
       hotel: {
         name: "En Hotel Ise",
