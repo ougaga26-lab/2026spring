@@ -60,7 +60,7 @@ const TRIP = {
         { kind: "food", time: "11:30", title: "海女小屋 まえの浜（前の浜）", note: "相差海女現烤海鮮，需事先預約；吃完在漁村附近走走", lat: 34.3883057, lng: 136.908493 },
         { kind: "transport", time: "13:00", title: "相差 → 鳥羽駅", note: "かもめ巴士約40分", lat: 34.4849, lng: 136.8434 },
         { kind: "sight", time: "14:00", title: "鳥羽水族館", note: "近千種海洋生物，儒艮是招牌明星；站旁步行約10分，約逛2.5h", lat: 34.4815825, lng: 136.8456926 },
-        { kind: "transport", time: "17:00", title: "鳥羽駅 → 二見浦駅", note: "JR參宮線約10分；先取回寄物櫃行李", lat: 34.4849, lng: 136.8434 },
+        { kind: "transport", time: "17:00", title: "鳥羽駅 → 二見浦駅", note: "JR參宮線約10分；出發前先取回寄物櫃行李", lat: 34.5065, lng: 136.7862 },
         { kind: "food", time: "傍晚", title: "旅館晚餐（海鮮）", note: "二見浦岩戸館用晚餐；若未含晚餐，改在鳥羽先吃海鮮再過來", place: "二見浦岩戸館", lat: 34.5081997, lng: 136.7855235 }
       ],
       hotel: {
@@ -78,7 +78,7 @@ const TRIP = {
       timeline: [
         { kind: "sunrise", time: "清晨", title: "夫婦岩看日出", note: "住宿步行約15-20分；看完在二見浦海邊附近走走", place: "夫婦岩", lat: 34.5089247, lng: 136.7878294 },
         { kind: "food", time: "午餐", title: "二見浦BBQ場", note: "生蠔吃到飽；散步後接近中午來吃，當作午餐", lat: 34.508856, lng: 136.7761429 },
-        { kind: "transport", time: "", title: "二見浦駅 → 伊勢市駅", note: "JR參宮線約10分；到站先到 En Hotel Ise 寄放行李，再輕裝出發", lat: 34.5065, lng: 136.7862 },
+        { kind: "transport", time: "", title: "二見浦駅 → 伊勢市駅", note: "JR參宮線約10分；到站先到 En Hotel Ise 寄放行李，再輕裝出發", lat: 34.4899, lng: 136.707 },
         { kind: "sight", time: "下午", title: "伊勢神宮（外宮→內宮）", note: "外宮前步行參拜；外宮→內宮搭巴士約15分", lat: 34.4550157, lng: 136.7251851 },
         { kind: "sight", time: "傍晚", title: "托福橫町・おかげ橫丁", note: "內宮旁步行即達，老街小吃伴手禮", place: "おかげ横丁", lat: 34.4624294, lng: 136.7228539 },
         { kind: "transport", time: "", title: "內宮 → 伊勢市駅", note: "バス約20分，回外宮／伊勢市駅一帶", lat: 34.4899, lng: 136.707 },
