@@ -28,7 +28,7 @@ const TRIP = {
       hotel: {
         name: "相鐵FRESA INN 名古屋站新幹線口",
         note: "名古屋車站旁，隔天南下賢島最方便",
-        lat: 35.170915, lng: 136.8815369
+        lat: 35.1678564, lng: 136.8799096
       }
     },
     {
@@ -63,7 +63,7 @@ const TRIP = {
       hotel: {
         name: "二見浦岩戸館",
         note: "近二見興玉神社，隔天不用早起趕車就能看日出",
-        lat: 34.5082, lng: 136.7855
+        lat: 34.5081997, lng: 136.7855235
       }
     },
     {
@@ -82,7 +82,7 @@ const TRIP = {
       hotel: {
         name: "En Hotel Ise",
         note: "伊勢市駅周邊，走路到車站、商店都方便",
-        lat: 34.4915092, lng: 136.7084795
+        lat: 34.4920599, lng: 136.7131271
       }
     },
     {
@@ -91,7 +91,7 @@ const TRIP = {
       dateLabel: "9/23（三）",
       title: "伊勢 → 渡輪 → 日間賀島",
       timeline: [
-        { kind: "transport", time: "09:45", title: "En Hotel Ise 退房", note: "JR參宮線約20分 → 10:10抵達鳥羽駅", lat: 34.4915092, lng: 136.7084795 },
+        { kind: "transport", time: "09:45", title: "En Hotel Ise 退房", note: "JR參宮線約20分 → 10:10抵達鳥羽駅", lat: 34.4920599, lng: 136.7131271 },
         { kind: "transport", time: "10:25", title: "抵達鳥羽港", note: "步行約10分，預留緩衝時間", lat: 34.480432, lng: 136.846764 },
         { kind: "ferry", time: "10:40", title: "搭伊勢灣渡輪", note: "船程約60分，跨越伊勢灣", lat: 34.480432, lng: 136.846764 },
         { kind: "sight", time: "11:40", title: "抵達伊良湖港・伊良湖岬散策", note: "戀路之濱、伊良湖岬燈塔，含午餐約1小時50分", lat: 34.5843963, lng: 137.019651 },
@@ -120,7 +120,7 @@ const TRIP = {
       hotel: {
         name: "露櫻GRAND酒店 名古屋藤丘站前",
         note: "藤丘車站前，吉卜力公園進出都方便（連住3晚）",
-        lat: 35.1824617, lng: 137.0213504
+        lat: 35.18311, lng: 137.0189254
       }
     },
     {
@@ -132,7 +132,7 @@ const TRIP = {
         { kind: "transport", time: "", title: "藤が丘駅 → 愛・地球博記念公園駅", note: "Linimo磁浮列車，約17分", lat: 35.1750406, lng: 137.0887716 },
         { kind: "sight", time: "全天", title: "吉卜力公園", note: "門票已搶到，園區內自由活動", lat: 35.1750406, lng: 137.0887716 }
       ],
-      hotel: { name: "露櫻GRAND酒店（連住）", note: "", lat: 35.1824617, lng: 137.0213504 }
+      hotel: { name: "露櫻GRAND酒店（連住）", note: "", lat: 35.18311, lng: 137.0189254 }
     },
     {
       id: "day7",
@@ -143,7 +143,7 @@ const TRIP = {
         { kind: "transport", time: "", title: "藤が丘駅 → 愛・地球博記念公園駅", note: "Linimo磁浮列車，約17分", lat: 35.1750406, lng: 137.0887716 },
         { kind: "sight", time: "全天", title: "吉卜力公園", note: "第二天，換不同區域慢慢逛", lat: 35.1750406, lng: 137.0887716 }
       ],
-      hotel: { name: "露櫻GRAND酒店（連住）", note: "", lat: 35.1824617, lng: 137.0213504 }
+      hotel: { name: "露櫻GRAND酒店（連住）", note: "", lat: 35.18311, lng: 137.0189254 }
     },
     {
       id: "day8",
