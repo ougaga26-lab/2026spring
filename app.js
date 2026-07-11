@@ -210,33 +210,48 @@ function drawAllMarkers() {
   if (bounds.length) map.fitBounds(bounds, { padding: [20, 20] });
 }
 
+// 產生「編號圖釘」：景點用序號 1,2,3…（1＝當天出發點），旅館用 🏨
+function routeIcon(label, color, isHotel) {
+  const style = isHotel ? "" : `background:${color}`;
+  const cls = "route-pin__badge" + (isHotel ? " route-pin__badge--hotel" : "");
+  return L.divIcon({
+    className: "route-pin",
+    html: `<div class="${cls}" style="${style}">${label}</div>`,
+    iconSize: [28, 28],
+    iconAnchor: [14, 14],
+    popupAnchor: [0, -16]
+  });
+}
+
 function filterMapByDay(dayId) {
   markerLayer.clearLayers();
   const day = TRIP.days.find(d => d.id === dayId);
   if (!day) return;
 
   const color = dayColors[day.id];
-  let points = day.timeline.filter(p => p.lat && p.lng && SIGHT_KINDS.has(p.kind));
-  if (points.length === 0) points = day.timeline.filter(p => p.lat && p.lng); // 整天都是交通就退回顯示全部
-  if (day.hotel && day.hotel.lat) points.push({ ...day.hotel, title: "🏨 " + day.hotel.name, note: day.hotel.note });
+  let sights = day.timeline.filter(p => p.lat && p.lng && SIGHT_KINDS.has(p.kind));
+  if (sights.length === 0) sights = day.timeline.filter(p => p.lat && p.lng); // 整天都是交通就退回顯示全部
+
+  const points = sights.map(p => ({ lat: p.lat, lng: p.lng, title: p.title, note: p.note, isHotel: false }));
+  if (day.hotel && day.hotel.lat) {
+    points.push({ lat: day.hotel.lat, lng: day.hotel.lng, title: day.hotel.name, note: day.hotel.note, isHotel: true });
+  }
 
   const latlngs = [];
+  let n = 0;
   points.forEach(p => {
-    const marker = L.circleMarker([p.lat, p.lng], {
-      radius: 8,
-      color: color,
-      weight: 2.5,
-      fillColor: color,
-      fillOpacity: 0.9
-    }).bindPopup(`<b>${day.seal} ${day.dateLabel}</b><br>${p.title}${p.note ? "<br>" + p.note : ""}`);
-    marker.addTo(markerLayer);
+    const label = p.isHotel ? "🏨" : String(++n);
+    const prefix = p.isHotel ? "🏨 " : label + ". ";
+    L.marker([p.lat, p.lng], { icon: routeIcon(label, color, p.isHotel) })
+      .bindPopup(`<b>${day.seal} ${day.dateLabel}</b><br>${prefix}${p.title}${p.note ? "<br>" + p.note : ""}`)
+      .addTo(markerLayer);
     latlngs.push([p.lat, p.lng]);
   });
 
   if (latlngs.length > 1) {
-    L.polyline(latlngs, { color: color, weight: 3, opacity: 0.7, dashArray: "5,6" }).addTo(markerLayer);
+    L.polyline(latlngs, { color: color, weight: 2.5, opacity: 0.5, dashArray: "4,7" }).addTo(markerLayer);
   }
-  if (latlngs.length) map.fitBounds(latlngs, { padding: [30, 30], maxZoom: 13 });
+  if (latlngs.length) map.fitBounds(latlngs, { padding: [36, 36], maxZoom: 14 });
 }
 
 // ---------- Init ----------

@@ -353,6 +353,31 @@ body.day-mode .mapcard {
 
 .hotel__body { flex: 1; min-width: 0; }
 
+/* ---------- 地圖編號圖釘 ---------- */
+
+.route-pin { background: none; border: none; }
+
+.route-pin__badge {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+.route-pin__badge--hotel {
+  background: var(--ink);
+  font-size: 14px;
+}
+
 /* Leaflet popup theming */
 .leaflet-popup-content-wrapper {
   border-radius: 10px;
