@@ -58,10 +58,10 @@ const TRIP = {
         { kind: "transport", time: "08:30", title: "賢島駅 → 鳥羽駅", note: "近鐵特急約29分；行李寄鳥羽駅寄物櫃", lat: 34.3054114, lng: 136.8216889 },
         { kind: "transport", time: "09:15", title: "鳥羽駅 → 相差", note: "かもめ巴士約40分，班次少需先查時刻表", lat: 34.4849, lng: 136.8434 },
         { kind: "food", time: "11:30", title: "海女小屋 まえの浜（前の浜）", note: "相差海女現烤海鮮，需事先預約；吃完在漁村附近走走", lat: 34.3883057, lng: 136.908493 },
-        { kind: "transport", time: "13:00", title: "相差 → 鳥羽駅", note: "かもめ巴士約40分" },
+        { kind: "transport", time: "13:00", title: "相差 → 鳥羽駅", note: "かもめ巴士約40分", lat: 34.4849, lng: 136.8434 },
         { kind: "sight", time: "14:00", title: "鳥羽水族館", note: "近千種海洋生物，儒艮是招牌明星；站旁步行約10分，約逛2.5h", lat: 34.4815825, lng: 136.8456926 },
         { kind: "transport", time: "17:00", title: "鳥羽駅 → 二見浦駅", note: "JR參宮線約10分；先取回寄物櫃行李", lat: 34.4849, lng: 136.8434 },
-        { kind: "food", time: "傍晚", title: "旅館晚餐（海鮮）", note: "二見浦岩戸館用晚餐；若未含晚餐，改在鳥羽先吃海鮮再過來" }
+        { kind: "food", time: "傍晚", title: "旅館晚餐（海鮮）", note: "二見浦岩戸館用晚餐；若未含晚餐，改在鳥羽先吃海鮮再過來", place: "二見浦岩戸館", lat: 34.5081997, lng: 136.7855235 }
       ],
       hotel: {
         name: "二見浦岩戸館",
