@@ -272,9 +272,13 @@ renderDayNav();
 renderDays();
 initMap();
 
-// 記下日期列高度，單日模式時地圖才能精準黏在它正下方
+// 記下日期列高度，單日模式時地圖才能精準黏在它正下方（換行/轉向時重算）
 const navEl = document.getElementById("dayNav");
-document.documentElement.style.setProperty("--nav-h", navEl.offsetHeight + "px");
+function updateNavHeight() {
+  document.documentElement.style.setProperty("--nav-h", navEl.offsetHeight + "px");
+}
+updateNavHeight();
+window.addEventListener("resize", updateNavHeight);
 
 // 預設進入「全部」總覽
 showAllMode();
