@@ -363,6 +363,9 @@ body.day-mode .mapcard {
   border-bottom-color: rgba(184, 69, 46, 0.5);
 }
 
+/* 同一項有多個連結時彼此留間距 */
+.tl-gmap { margin-right: 14px; }
+
 /* 行程備註內嵌的時刻表圖（點擊放大） */
 .tl-imglink { display: block; margin-top: 8px; }
 .tl-img {

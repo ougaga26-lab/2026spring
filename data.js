@@ -38,7 +38,7 @@ const TRIP = {
       dateLabel: "9/20（日）",
       title: "名古屋 → 賢島",
       timeline: [
-        { kind: "transport", time: "10:25", title: "近鐵名古屋駅 出發", note: "近鐵特急しまかぜ（志摩之風列車）直達，約1小時35分", place: "近鉄名古屋駅", lat: 35.170915, lng: 136.8815369 },
+        { kind: "transport", time: "10:25", title: "近鐵名古屋駅 出發", note: "近鐵特急しまかぜ（志摩之風列車）直達，約1小時35分。⚠️尚未訂位——確認搭 10:25，訂位時記得選『第六節車廂（6號車）』。<a class=\"tl-gmap\" href=\"https://ars-kintetsutk.triplabo.com/activity/zt/LINKTIVITY-02ER5\" target=\"_blank\" rel=\"noopener\">しまかぜ訂票 ↗</a><a class=\"tl-gmap\" href=\"https://nicklee.tw/3273/kintetsu-online-reservation/\" target=\"_blank\" rel=\"noopener\">購票教學 ↗</a>", place: "近鉄名古屋駅", lat: 35.170915, lng: 136.8815369 },
         { kind: "sight", time: "12:00", title: "抵達賢島駅", note: "真珠養殖觀光船，悠閒感受志摩灣風景", lat: 34.3054114, lng: 136.8216889 },
         { kind: "onsen", time: "傍晚", title: "溫泉旅館泡湯", note: "調整長途移動的疲勞，好好放鬆一晚", place: "賢島寶生苑", lat: 34.3054114, lng: 136.8216889 }
       ],
