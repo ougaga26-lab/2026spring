@@ -51,14 +51,16 @@ const TRIP = {
       id: "day2",
       seal: "二",
       dateLabel: "9/21（一）",
-      title: "賢島 → 鳥羽 → 伊勢 → 二見浦",
+      title: "賢島 → 相差 → 鳥羽 → 二見浦",
       timeline: [
-        { kind: "transport", time: "", title: "賢島駅 → 鳥羽駅", note: "近鐵特急，約29分", lat: 34.3054114, lng: 136.8216889 },
-        { kind: "sight", time: "上午", title: "鳥羽水族館", note: "近千種海洋生物，儒艮是招牌明星", lat: 34.4815825, lng: 136.8456926 },
-        { kind: "food", time: "午餐", title: "海女小屋", note: "海女奶奶現烤海鮮，巴士/計程車約15-20分", lat: 34.3876089, lng: 136.9123777 },
-        { kind: "transport", time: "傍晚", title: "鳥羽駅 → 伊勢市駅", note: "JR參宮線，約20分" },
-        { kind: "food", time: "晚餐", title: "Ichigetsuya 居酒屋", note: "本地人推薦的老字號，步行約10分", lat: 34.4954307, lng: 136.7009331 },
-        { kind: "transport", time: "", title: "伊勢市駅 → 二見浦駅", note: "JR參宮線，約10分" }
+        { kind: "transport", time: "08:30", title: "賢島駅 → 鳥羽駅", note: "近鐵特急約29分；行李寄鳥羽駅寄物櫃", lat: 34.3054114, lng: 136.8216889 },
+        { kind: "transport", time: "09:15", title: "鳥羽駅 → 相差", note: "かもめ巴士約40分，班次少需先查時刻表", lat: 34.4849, lng: 136.8434 },
+        { kind: "sight", time: "10:00", title: "石神さん（神明神社）", note: "相差海女信仰，女性一願成就", lat: 34.390612, lng: 136.894176 },
+        { kind: "food", time: "11:30", title: "海女小屋 烤海鮮午餐", note: "海女現烤海鮮，需事先預約", lat: 34.3876089, lng: 136.9123777 },
+        { kind: "transport", time: "13:00", title: "相差 → 鳥羽駅", note: "かもめ巴士約40分" },
+        { kind: "sight", time: "14:00", title: "鳥羽水族館", note: "近千種海洋生物，儒艮是招牌明星；站旁步行約10分，約逛2.5h", lat: 34.4815825, lng: 136.8456926 },
+        { kind: "transport", time: "17:00", title: "鳥羽駅 → 二見浦駅", note: "JR參宮線約10分；先取回寄物櫃行李", lat: 34.4849, lng: 136.8434 },
+        { kind: "food", time: "傍晚", title: "旅館晚餐（海鮮）", note: "二見浦岩戸館用晚餐；若未含晚餐，改在鳥羽先吃海鮮再過來" }
       ],
       hotel: {
         name: "二見浦岩戸館",
@@ -76,8 +78,9 @@ const TRIP = {
         { kind: "food", time: "", title: "二見浦BBQ場", note: "生蠔吃到飽", lat: 34.508856, lng: 136.7761429 },
         { kind: "transport", time: "", title: "二見浦駅 → 伊勢市駅", note: "JR參宮線，約10分" },
         { kind: "food", time: "午餐", title: "豚捨 外宮前店", note: "明治年間老店，伊勢牛可樂餅、豚排必點", lat: 34.4885142, lng: 136.7074453 },
-        { kind: "sight", time: "下午", title: "伊勢神宮（外宮→內宮）", note: "外宮走到內宮可搭巴士約15分", lat: 34.4550157, lng: 136.7251851 },
-        { kind: "sight", time: "傍晚", title: "托福橫町", note: "內宮旁步行即達，老街小吃伴手禮", lat: 34.4624294, lng: 136.7228539 }
+        { kind: "sight", time: "下午", title: "伊勢神宮（外宮→內宮）", note: "外宮前步行參拜；外宮→內宮搭巴士約15分", lat: 34.4550157, lng: 136.7251851 },
+        { kind: "sight", time: "傍晚", title: "托福橫町・おかげ橫丁", note: "內宮旁步行即達，老街小吃伴手禮", lat: 34.4624294, lng: 136.7228539 },
+        { kind: "transport", time: "", title: "內宮 → 伊勢市駅（回飯店）", note: "バス約20分，回 En Hotel Ise" }
       ],
       hotel: {
         name: "En Hotel Ise",
@@ -113,6 +116,7 @@ const TRIP = {
       timeline: [
         { kind: "sight", time: "上午", title: "日間賀島悠閒半天", note: "環島步行，島上章魚裝置藝術" },
         { kind: "ferry", time: "", title: "日間賀島 → 河和港", note: "名鐵海上觀光船，約20分", lat: 34.7781055, lng: 136.9118864 },
+        { kind: "transport", time: "", title: "河和港 → 河和駅", note: "步行約7分" },
         { kind: "transport", time: "", title: "河和駅 → 名鐵名古屋駅", note: "名鐵特急，約50分" },
         { kind: "sight", time: "下午", title: "名古屋市區逛街", note: "名古屋城 / 大須觀音商店街，自由運用", lat: 35.1847501, lng: 136.8996883 },
         { kind: "transport", time: "", title: "名古屋駅 → 藤が丘駅", note: "地下鐵東山線，約30分", lat: 35.1824617, lng: 137.0213504 }
