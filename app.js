@@ -78,8 +78,9 @@ function showDayMode(dayId) {
 // 點行程裡的景點時，地圖移動並放大到該點
 function focusMapPoint(lat, lng, title) {
   if (!map) return;
-  map.setView([lat, lng], 14, { animate: true });
-  L.popup({ offset: [0, -4] }).setLatLng([lat, lng]).setContent(title).openOn(map);
+  map.panTo({ lat, lng });
+  map.setZoom(15);
+  openInfo({ lat, lng }, title);
 }
 
 function renderDays() {
@@ -158,82 +159,127 @@ function renderDays() {
   });
 }
 
-// ---------- Map ----------
+// ---------- Map (Google Maps) ----------
 
-let map, markerLayer;
+let map, infoWindow;
+let mapMarkers = [];
+let mapLines = [];
 const dayColors = {};
 const palette = ["#b8452e", "#2c6b6b", "#ab8226", "#6b4e9a", "#3a7d3a", "#c05a8c", "#4a6fa5", "#a25d2e", "#5b7d7d"];
 
+// Google Maps 載入完成後自動呼叫（見 index.html 底部的 script callback）
 function initMap() {
-  map = L.map("map", { scrollWheelZoom: false }).setView([34.9, 136.95], 8);
-
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    attribution: "&copy; OpenStreetMap contributors",
-    maxZoom: 18
-  }).addTo(map);
-
-  markerLayer = L.layerGroup().addTo(map);
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: 34.9, lng: 136.95 },
+    zoom: 8,
+    mapTypeControl: false,
+    streetViewControl: false,
+    fullscreenControl: true,
+    clickableIcons: false,
+    gestureHandling: "cooperative"
+  });
+  infoWindow = new google.maps.InfoWindow();
 
   TRIP.days.forEach((d, i) => { dayColors[d.id] = palette[i % palette.length]; });
 
-  drawAllMarkers();
+  showAllMode();
+}
+window.initMap = initMap;
+
+function clearMap() {
+  mapMarkers.forEach(m => m.setMap(null));
+  mapLines.forEach(l => l.setMap(null));
+  mapMarkers = [];
+  mapLines = [];
 }
 
+function openInfo(position, html) {
+  infoWindow.setContent(`<div class="gm-pop">${html}</div>`);
+  infoWindow.setPosition(position);
+  infoWindow.open(map);
+}
+
+// 總覽用的小圓點
+function dotIcon(color) {
+  return {
+    path: google.maps.SymbolPath.CIRCLE,
+    scale: 6,
+    fillColor: color,
+    fillOpacity: 0.9,
+    strokeColor: "#ffffff",
+    strokeWeight: 1.5
+  };
+}
+
+// 編號圖釘：sight＝實心 / transit＝空心 / hotel＝深色
+function pinIcon(color, variant) {
+  if (variant === "hotel") {
+    return { path: google.maps.SymbolPath.CIRCLE, scale: 11, fillColor: "#1c2b46", fillOpacity: 1, strokeColor: "#ffffff", strokeWeight: 2 };
+  }
+  const filled = variant !== "transit";
+  return {
+    path: google.maps.SymbolPath.CIRCLE,
+    scale: 11,
+    fillColor: filled ? color : "#ffffff",
+    fillOpacity: 1,
+    strokeColor: color,
+    strokeWeight: 2.5
+  };
+}
+
+function pinLabel(text, color, variant) {
+  const lightText = variant !== "transit"; // 實心/hotel 白字，空心用當天色
+  return { text: text, color: lightText ? "#ffffff" : color, fontFamily: "monospace", fontSize: "12px", fontWeight: "700" };
+}
+
+// 虛線（Google Maps 用符號堆疊模擬 dash）
+function dashedLine(path, color, opacity) {
+  const dash = { path: "M 0,-1 0,1", strokeOpacity: opacity, strokeColor: color, strokeWeight: 2.5, scale: 2.5 };
+  return new google.maps.Polyline({
+    path: path,
+    map: map,
+    strokeOpacity: 0,
+    icons: [{ icon: dash, offset: "0", repeat: "13px" }]
+  });
+}
+
+function fitTo(bounds, maxZoom) {
+  map.fitBounds(bounds, 30);
+  google.maps.event.addListenerOnce(map, "idle", () => {
+    if (maxZoom && map.getZoom() > maxZoom) map.setZoom(maxZoom);
+  });
+}
+
+// 「全部」總覽：每天不同顏色的圓點＋當天路線
 function drawAllMarkers() {
-  markerLayer.clearLayers();
-  const bounds = [];
+  if (!map) return;
+  clearMap();
+  const bounds = new google.maps.LatLngBounds();
 
   TRIP.days.forEach(day => {
     const color = dayColors[day.id];
-    const points = day.timeline.filter(p => p.lat && p.lng);
-    if (day.hotel && day.hotel.lat) points.push({ ...day.hotel, title: "🏨 " + day.hotel.name, note: day.hotel.note });
+    const points = day.timeline.filter(p => p.lat && p.lng).slice();
+    if (day.hotel && day.hotel.lat) points.push({ lat: day.hotel.lat, lng: day.hotel.lng, title: "🏨 " + day.hotel.name });
 
-    const latlngs = [];
+    const path = [];
     points.forEach(p => {
-      const marker = L.circleMarker([p.lat, p.lng], {
-        radius: 7,
-        color: color,
-        weight: 2,
-        fillColor: color,
-        fillOpacity: 0.85
-      }).bindPopup(`<b>${day.seal} ${day.dateLabel}</b><br>${p.title}`);
-      marker.addTo(markerLayer);
-      latlngs.push([p.lat, p.lng]);
-      bounds.push([p.lat, p.lng]);
+      const pos = { lat: p.lat, lng: p.lng };
+      const marker = new google.maps.Marker({ position: pos, map: map, icon: dotIcon(color), title: p.title });
+      marker.addListener("click", () => openInfo(pos, `<b>${day.seal} ${day.dateLabel}</b><br>${p.title}`));
+      mapMarkers.push(marker);
+      path.push(pos);
+      bounds.extend(pos);
     });
-
-    if (latlngs.length > 1) {
-      L.polyline(latlngs, { color: color, weight: 2.5, opacity: 0.55, dashArray: "5,6" }).addTo(markerLayer);
-    }
+    if (path.length > 1) mapLines.push(dashedLine(path, color, 0.5));
   });
 
-  if (bounds.length) map.fitBounds(bounds, { padding: [20, 20] });
+  if (!bounds.isEmpty()) fitTo(bounds, 11);
 }
 
-// 產生「編號圖釘」：
-//   sight   ＝實心（景點）  transit＝空心（交通）  hotel＝深色 🏨
-// 序號 1,2,3… 依當天行程順序，1＝當天出發點
-function routeIcon(label, color, variant) {
-  let cls = "route-pin__badge";
-  let style = `background:${color}`;
-  if (variant === "hotel") {
-    cls += " route-pin__badge--hotel";
-    style = "";
-  } else if (variant === "transit") {
-    cls += " route-pin__badge--transit";
-    style = `color:${color};border-color:${color}`;
-  }
-  return L.divIcon({
-    className: "route-pin",
-    html: `<div class="${cls}" style="${style}">${label}</div>`,
-    iconSize: [28, 28],
-    iconAnchor: [14, 14],
-    popupAnchor: [0, -16]
-  });
-}
-
+// 「單日」：編號圖釘（1＝出發點）＋當天路線
 function filterMapByDay(dayId) {
-  markerLayer.clearLayers();
+  if (!map) return;
+  clearMap();
   const day = TRIP.days.find(d => d.id === dayId);
   if (!day) return;
 
@@ -248,21 +294,27 @@ function filterMapByDay(dayId) {
     points.push({ lat: day.hotel.lat, lng: day.hotel.lng, title: day.hotel.name, note: day.hotel.note, variant: "hotel" });
   }
 
-  const latlngs = [];
+  const bounds = new google.maps.LatLngBounds();
+  const path = [];
   let n = 0;
   points.forEach(p => {
-    const label = p.variant === "hotel" ? "🏨" : String(++n);
+    const pos = { lat: p.lat, lng: p.lng };
+    const label = p.variant === "hotel" ? "宿" : String(++n);
     const prefix = p.variant === "hotel" ? "🏨 " : label + ". ";
-    L.marker([p.lat, p.lng], { icon: routeIcon(label, color, p.variant) })
-      .bindPopup(`<b>${day.seal} ${day.dateLabel}</b><br>${prefix}${p.title}${p.note ? "<br>" + p.note : ""}`)
-      .addTo(markerLayer);
-    latlngs.push([p.lat, p.lng]);
+    const marker = new google.maps.Marker({
+      position: pos, map: map,
+      icon: pinIcon(color, p.variant),
+      label: pinLabel(label, color, p.variant),
+      title: p.title
+    });
+    marker.addListener("click", () => openInfo(pos, `<b>${day.seal} ${day.dateLabel}</b><br>${prefix}${p.title}${p.note ? "<br>" + p.note : ""}`));
+    mapMarkers.push(marker);
+    path.push(pos);
+    bounds.extend(pos);
   });
 
-  if (latlngs.length > 1) {
-    L.polyline(latlngs, { color: color, weight: 2.5, opacity: 0.5, dashArray: "4,7" }).addTo(markerLayer);
-  }
-  if (latlngs.length) map.fitBounds(latlngs, { padding: [36, 36], maxZoom: 14 });
+  if (path.length > 1) mapLines.push(dashedLine(path, color, 0.6));
+  if (!bounds.isEmpty()) fitTo(bounds, 14);
 }
 
 // ---------- Init ----------
@@ -270,7 +322,8 @@ function filterMapByDay(dayId) {
 renderHero();
 renderDayNav();
 renderDays();
-initMap();
+// initMap 由 Google Maps 載入完成後透過 callback 自動呼叫（見 index.html 底部）；
+// 地圖建立後會自動進入「全部」總覽
 
 // 記下日期列高度，單日模式時地圖才能精準黏在它正下方（換行/轉向時重算）
 const navEl = document.getElementById("dayNav");
@@ -279,6 +332,3 @@ function updateNavHeight() {
 }
 updateNavHeight();
 window.addEventListener("resize", updateNavHeight);
-
-// 預設進入「全部」總覽
-showAllMode();
