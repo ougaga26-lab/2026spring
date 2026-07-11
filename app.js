@@ -16,9 +16,19 @@ const ICONS = {
 // 交通類項目（在地圖上用「空心圖釘」跟景點的實心圖釘區分）
 const TRANSIT_KINDS = new Set(["transport", "ferry"]);
 
-// 產生 Google Maps 連結（免金鑰，點了會跳到手機的 Google Maps app）
-function gmapUrl(lat, lng) {
-  return `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+// 產生 Google Maps 連結（用「地名」搜尋，會開到該地點的資訊頁，而非只有座標）
+function gmapUrl(query) {
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+}
+
+// 從行程項目算出最適合的 Google Maps 搜尋字：
+//   優先用 place 覆寫；交通「A → B」取目的地；去除括號註解與「抵達」開頭
+function mapQuery(item) {
+  if (item.place) return item.place;
+  let t = item.title.replace(/（[^）]*）|\([^)]*\)/g, ""); // 去括號註解（含內含的箭頭）
+  if (t.includes("→")) t = t.split("→").pop();             // 交通取箭頭後的目的地
+  t = t.replace(/^(抵達|搭)/, "");                          // 去「抵達 / 搭」開頭
+  return t.trim();
 }
 
 function renderHero() {
@@ -95,7 +105,7 @@ function renderDays() {
       const clickable = hasGeo;
       const geoAttr = clickable ? ` data-lat="${item.lat}" data-lng="${item.lng}"` : "";
       const gmapLink = hasGeo
-        ? `<a class="tl-gmap" href="${gmapUrl(item.lat, item.lng)}" target="_blank" rel="noopener">在 Google Maps 開啟 ↗</a>`
+        ? `<a class="tl-gmap" href="${gmapUrl(mapQuery(item))}" target="_blank" rel="noopener">在 Google Maps 開啟 ↗</a>`
         : "";
       return `
       <div class="tl-item${clickable ? " tl-item--geo" : ""}" data-kind="${item.kind}"${geoAttr}>
@@ -121,7 +131,7 @@ function renderDays() {
         <div class="hotel__body">
           <div class="hotel__name">${day.hotel.name}</div>
           ${day.hotel.note ? `<div class="hotel__note">${day.hotel.note}</div>` : ""}
-          ${day.hotel.lat ? `<a class="hotel__gmap" href="${gmapUrl(day.hotel.lat, day.hotel.lng)}" target="_blank" rel="noopener">在 Google Maps 開啟 ↗</a>` : ""}
+          ${day.hotel.lat ? `<a class="hotel__gmap" href="${gmapUrl(day.hotel.place || day.hotel.name)}" target="_blank" rel="noopener">在 Google Maps 開啟 ↗</a>` : ""}
         </div>
       </div>
     ` : "";

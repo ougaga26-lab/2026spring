@@ -23,7 +23,7 @@ const TRIP = {
       timeline: [
         { kind: "transport", time: "", title: "抵達中部國際空港（Centrair）", note: "入境、領行李後前往機場車站", lat: 34.8584, lng: 136.8051 },
         { kind: "transport", time: "", title: "名鐵 μ-SKY → 名鐵名古屋駅", note: "機場特急直達，約28分（不用換車）", lat: 35.1699, lng: 136.8817 },
-        { kind: "note", time: "", title: "飯店 Check-in", note: "飯店就在名古屋車站旁，時差不大不用特別調整", lat: 35.1678564, lng: 136.8799096 }
+        { kind: "note", time: "", title: "飯店 Check-in", note: "飯店就在名古屋車站旁，時差不大不用特別調整", place: "相鐵FRESA INN 名古屋站新幹線口", lat: 35.1678564, lng: 136.8799096 }
       ],
       hotel: {
         name: "相鐵FRESA INN 名古屋站新幹線口",
@@ -38,9 +38,9 @@ const TRIP = {
       dateLabel: "9/20（日）",
       title: "名古屋 → 賢島",
       timeline: [
-        { kind: "transport", time: "10:25", title: "近鐵名古屋駅 出發", note: "近鐵特急しまかぜ（志摩之風列車）直達，約1小時35分", lat: 35.170915, lng: 136.8815369 },
+        { kind: "transport", time: "10:25", title: "近鐵名古屋駅 出發", note: "近鐵特急しまかぜ（志摩之風列車）直達，約1小時35分", place: "近鉄名古屋駅", lat: 35.170915, lng: 136.8815369 },
         { kind: "sight", time: "12:00", title: "抵達賢島駅", note: "真珠養殖觀光船，悠閒感受志摩灣風景", lat: 34.3054114, lng: 136.8216889 },
-        { kind: "onsen", time: "傍晚", title: "溫泉旅館泡湯", note: "調整長途移動的疲勞，好好放鬆一晚", lat: 34.3054114, lng: 136.8216889 }
+        { kind: "onsen", time: "傍晚", title: "溫泉旅館泡湯", note: "調整長途移動的疲勞，好好放鬆一晚", place: "賢島寶生苑", lat: 34.3054114, lng: 136.8216889 }
       ],
       hotel: {
         name: "賢島寶生苑",
@@ -76,12 +76,12 @@ const TRIP = {
       dateLabel: "9/22（二）",
       title: "二見浦 → 伊勢",
       timeline: [
-        { kind: "sunrise", time: "清晨", title: "夫婦岩看日出", note: "住宿步行約15-20分", lat: 34.5089247, lng: 136.7878294 },
+        { kind: "sunrise", time: "清晨", title: "夫婦岩看日出", note: "住宿步行約15-20分", place: "夫婦岩", lat: 34.5089247, lng: 136.7878294 },
         { kind: "food", time: "", title: "二見浦BBQ場", note: "生蠔吃到飽", lat: 34.508856, lng: 136.7761429 },
         { kind: "transport", time: "", title: "二見浦駅 → 伊勢市駅", note: "JR參宮線，約10分", lat: 34.5065, lng: 136.7862 },
         { kind: "food", time: "午餐", title: "豚捨 外宮前店", note: "明治年間老店，伊勢牛可樂餅、豚排必點", lat: 34.4885142, lng: 136.7074453 },
         { kind: "sight", time: "下午", title: "伊勢神宮（外宮→內宮）", note: "外宮前步行參拜；外宮→內宮搭巴士約15分", lat: 34.4550157, lng: 136.7251851 },
-        { kind: "sight", time: "傍晚", title: "托福橫町・おかげ橫丁", note: "內宮旁步行即達，老街小吃伴手禮", lat: 34.4624294, lng: 136.7228539 },
+        { kind: "sight", time: "傍晚", title: "托福橫町・おかげ橫丁", note: "內宮旁步行即達，老街小吃伴手禮", place: "おかげ横丁", lat: 34.4624294, lng: 136.7228539 },
         { kind: "transport", time: "", title: "內宮 → 伊勢市駅（回飯店）", note: "バス約20分，回 En Hotel Ise", lat: 34.4899, lng: 136.707 }
       ],
       hotel: {
@@ -97,10 +97,10 @@ const TRIP = {
       dateLabel: "9/23（三）",
       title: "伊勢 → 渡輪 → 日間賀島",
       timeline: [
-        { kind: "transport", time: "09:45", title: "En Hotel Ise 退房", note: "JR參宮線約20分 → 10:10抵達鳥羽駅", lat: 34.4920599, lng: 136.7131271 },
+        { kind: "transport", time: "09:45", title: "En Hotel Ise 退房", note: "JR參宮線約20分 → 10:10抵達鳥羽駅", place: "En Hotel Ise", lat: 34.4920599, lng: 136.7131271 },
         { kind: "transport", time: "10:25", title: "抵達鳥羽港", note: "步行約10分，預留緩衝時間", lat: 34.480432, lng: 136.846764 },
         { kind: "ferry", time: "10:40", title: "搭伊勢灣渡輪", note: "船程約60分，跨越伊勢灣", lat: 34.480432, lng: 136.846764 },
-        { kind: "sight", time: "11:40", title: "抵達伊良湖港・伊良湖岬散策", note: "戀路之濱、伊良湖岬燈塔，含午餐約1小時50分", lat: 34.5843963, lng: 137.019651 },
+        { kind: "sight", time: "11:40", title: "抵達伊良湖港・伊良湖岬散策", note: "戀路之濱、伊良湖岬燈塔，含午餐約1小時50分", place: "伊良湖岬", lat: 34.5843963, lng: 137.019651 },
         { kind: "ferry", time: "14:10", title: "搭名鐵海上觀光船", note: "前往日間賀島，約20-30分", lat: 34.5843963, lng: 137.019651 },
         { kind: "sight", time: "14:45", title: "抵達日間賀島", note: "章魚造型裝置藝術很好拍，環島悠閒", lat: 34.7051045, lng: 137.0060226 }
       ],
@@ -118,11 +118,11 @@ const TRIP = {
       dateLabel: "9/24（四）",
       title: "日間賀島 → 河和 → 名古屋 → 藤丘",
       timeline: [
-        { kind: "sight", time: "上午", title: "日間賀島悠閒半天", note: "環島步行，島上章魚裝置藝術", lat: 34.7051045, lng: 137.0060226 },
+        { kind: "sight", time: "上午", title: "日間賀島悠閒半天", note: "環島步行，島上章魚裝置藝術", place: "日間賀島", lat: 34.7051045, lng: 137.0060226 },
         { kind: "ferry", time: "", title: "日間賀島 → 河和港", note: "名鐵海上觀光船，約20分", lat: 34.7781055, lng: 136.9118864 },
         { kind: "transport", time: "", title: "河和港 → 河和駅", note: "步行約7分", lat: 34.7862, lng: 136.935 },
         { kind: "transport", time: "", title: "河和駅 → 名鐵名古屋駅", note: "名鐵特急，約50分", lat: 35.1699, lng: 136.8817 },
-        { kind: "sight", time: "下午", title: "名古屋市區逛街", note: "名古屋城 / 大須觀音商店街，自由運用", lat: 35.1847501, lng: 136.8996883 },
+        { kind: "sight", time: "下午", title: "名古屋市區逛街", note: "名古屋城 / 大須觀音商店街，自由運用", place: "名古屋城", lat: 35.1847501, lng: 136.8996883 },
         { kind: "transport", time: "", title: "名古屋駅 → 藤が丘駅", note: "地下鐵東山線，約30分", lat: 35.1824617, lng: 137.0213504 }
       ],
       hotel: {
@@ -141,7 +141,7 @@ const TRIP = {
         { kind: "transport", time: "", title: "藤が丘駅 → 愛・地球博記念公園駅", note: "Linimo磁浮列車，約17分", lat: 35.1750406, lng: 137.0887716 },
         { kind: "sight", time: "全天", title: "吉卜力公園", note: "門票已搶到，園區內自由活動", lat: 35.1750406, lng: 137.0887716 }
       ],
-      hotel: { name: "露櫻GRAND酒店（連住）", note: "", lat: 35.18311, lng: 137.0189254 },
+      hotel: { name: "露櫻GRAND酒店（連住）", place: "露櫻GRAND酒店 名古屋藤丘站前", note: "", lat: 35.18311, lng: 137.0189254 },
       luggage: "連住露櫻，行李留飯店，輕裝去吉卜力公園（園區有投幣置物櫃可寄小包）。"
     },
     {
@@ -153,7 +153,7 @@ const TRIP = {
         { kind: "transport", time: "", title: "藤が丘駅 → 愛・地球博記念公園駅", note: "Linimo磁浮列車，約17分", lat: 35.1750406, lng: 137.0887716 },
         { kind: "sight", time: "全天", title: "吉卜力公園", note: "第二天，換不同區域慢慢逛", lat: 35.1750406, lng: 137.0887716 }
       ],
-      hotel: { name: "露櫻GRAND酒店（連住）", note: "", lat: 35.18311, lng: 137.0189254 },
+      hotel: { name: "露櫻GRAND酒店（連住）", place: "露櫻GRAND酒店 名古屋藤丘站前", note: "", lat: 35.18311, lng: 137.0189254 },
       luggage: "同樣連住露櫻，行李留飯店輕裝出門；園區走一整天，穿好走的鞋。"
     },
     {
@@ -163,7 +163,7 @@ const TRIP = {
       title: "藤丘 → 機場",
       timeline: [
         { kind: "transport", time: "", title: "藤が丘駅6號乘車處 → 中部國際空港", note: "名鐵巴士直達，約55分，班次不多請提前查當日時刻", lat: 34.8573624, lng: 136.8107557 },
-        { kind: "note", time: "", title: "搭機返程", note: "國際線建議提前2-3小時到機場", lat: 34.8584, lng: 136.8051 }
+        { kind: "note", time: "", title: "搭機返程", note: "國際線建議提前2-3小時到機場", place: "中部国際空港", lat: 34.8584, lng: 136.8051 }
       ],
       hotel: null,
       luggage: "退房露櫻，拖行李搭名鐵巴士直達中部空港，大箱放巴士行李廂；抵達機場後辦理托運。"
