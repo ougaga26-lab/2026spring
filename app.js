@@ -13,6 +13,14 @@ const ICONS = {
   note: "📍"
 };
 
+// 單日地圖上要顯示的「景點類」項目（transport / ferry 這種移動過程不畫）
+const SIGHT_KINDS = new Set(["sight", "food", "onsen", "sunrise", "note"]);
+
+// 產生 Google Maps 連結（免金鑰，點了會跳到手機的 Google Maps app）
+function gmapUrl(lat, lng) {
+  return `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+}
+
 function renderHero() {
   document.getElementById("heroTitle").textContent = TRIP.title;
   document.getElementById("heroDates").textContent = TRIP.dateRange;
@@ -20,15 +28,21 @@ function renderHero() {
 
 function renderDayNav() {
   const nav = document.getElementById("dayNav");
-  TRIP.days.forEach((day, i) => {
+
+  // 最前面的「全部」＝顯示所有天數的總覽（預設畫面）
+  const allBtn = document.createElement("button");
+  allBtn.className = "daynav__item daynav__item--all is-active";
+  allBtn.textContent = "全部";
+  allBtn.dataset.dayId = "all";
+  allBtn.addEventListener("click", () => showAllMode());
+  nav.appendChild(allBtn);
+
+  TRIP.days.forEach(day => {
     const btn = document.createElement("button");
-    btn.className = "daynav__item" + (i === 0 ? " is-active" : "");
+    btn.className = "daynav__item";
     btn.textContent = day.seal;
     btn.dataset.dayId = day.id;
-    btn.addEventListener("click", () => {
-      setActiveNav(day.id);
-      filterMapByDay(day.id);
-    });
+    btn.addEventListener("click", () => showDayMode(day.id));
     nav.appendChild(btn);
   });
 }
@@ -39,6 +53,35 @@ function setActiveNav(dayId) {
   });
 }
 
+// 「全部」檢視：顯示所有天數的卡片與整趟路線
+function showAllMode() {
+  document.body.classList.remove("day-mode");
+  setActiveNav("all");
+  document.querySelectorAll(".day").forEach(el => { el.style.display = ""; });
+  drawAllMarkers();
+}
+
+// 「單日」檢視：地圖黏在上方，底下只留當天行程，只畫當天景點
+function showDayMode(dayId) {
+  document.body.classList.add("day-mode");
+  setActiveNav(dayId);
+  document.querySelectorAll(".day").forEach(el => {
+    const show = el.id === dayId;
+    el.style.display = show ? "" : "none";
+    el.classList.toggle("is-open", show);
+    el.querySelector(".day__header").setAttribute("aria-expanded", show);
+  });
+  filterMapByDay(dayId);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// 點行程裡的景點時，地圖移動並放大到該點
+function focusMapPoint(lat, lng, title) {
+  if (!map) return;
+  map.setView([lat, lng], 14, { animate: true });
+  L.popup({ offset: [0, -4] }).setLatLng([lat, lng]).setContent(title).openOn(map);
+}
+
 function renderDays() {
   const container = document.getElementById("days");
   TRIP.days.forEach((day, i) => {
@@ -46,22 +89,31 @@ function renderDays() {
     el.className = "day" + (i === 0 ? " is-open" : "");
     el.id = day.id;
 
-    let timelineHtml = day.timeline.map(item => `
-      <div class="tl-item" data-kind="${item.kind}">
+    let timelineHtml = day.timeline.map(item => {
+      const hasGeo = item.lat && item.lng;
+      const clickable = hasGeo && SIGHT_KINDS.has(item.kind);
+      const geoAttr = clickable ? ` data-lat="${item.lat}" data-lng="${item.lng}"` : "";
+      const gmapLink = hasGeo
+        ? `<a class="tl-gmap" href="${gmapUrl(item.lat, item.lng)}" target="_blank" rel="noopener">在 Google Maps 開啟 ↗</a>`
+        : "";
+      return `
+      <div class="tl-item${clickable ? " tl-item--geo" : ""}" data-kind="${item.kind}"${geoAttr}>
         ${item.time ? `<div class="tl-time">${item.time}</div>` : ""}
         <div class="tl-title"><span class="tl-icon">${ICONS[item.kind] || "📍"}</span>${item.title}</div>
         ${item.note ? `<div class="tl-note">${item.note}</div>` : ""}
-      </div>
-    `).join("");
+        ${gmapLink}
+      </div>`;
+    }).join("");
 
     let alertHtml = day.alert ? `<div class="alert">⚠️ ${day.alert}</div>` : "";
 
     let hotelHtml = day.hotel ? `
       <div class="hotel">
         <div class="hotel__icon">🏨</div>
-        <div>
+        <div class="hotel__body">
           <div class="hotel__name">${day.hotel.name}</div>
           ${day.hotel.note ? `<div class="hotel__note">${day.hotel.note}</div>` : ""}
+          ${day.hotel.lat ? `<a class="hotel__gmap" href="${gmapUrl(day.hotel.lat, day.hotel.lng)}" target="_blank" rel="noopener">在 Google Maps 開啟 ↗</a>` : ""}
         </div>
       </div>
     ` : "";
@@ -88,8 +140,18 @@ function renderDays() {
       const willOpen = !el.classList.contains("is-open");
       el.classList.toggle("is-open");
       el.querySelector(".day__header").setAttribute("aria-expanded", willOpen);
-      setActiveNav(day.id);
-      filterMapByDay(day.id);
+    });
+
+    // 點景點 → 地圖移動過去（點 Google Maps 連結則不觸發）
+    el.querySelectorAll(".tl-item--geo").forEach(it => {
+      it.addEventListener("click", e => {
+        if (e.target.closest(".tl-gmap")) return;
+        focusMapPoint(
+          parseFloat(it.dataset.lat),
+          parseFloat(it.dataset.lng),
+          it.querySelector(".tl-title").textContent
+        );
+      });
     });
 
     container.appendChild(el);
@@ -154,7 +216,8 @@ function filterMapByDay(dayId) {
   if (!day) return;
 
   const color = dayColors[day.id];
-  const points = day.timeline.filter(p => p.lat && p.lng);
+  let points = day.timeline.filter(p => p.lat && p.lng && SIGHT_KINDS.has(p.kind));
+  if (points.length === 0) points = day.timeline.filter(p => p.lat && p.lng); // 整天都是交通就退回顯示全部
   if (day.hotel && day.hotel.lat) points.push({ ...day.hotel, title: "🏨 " + day.hotel.name, note: day.hotel.note });
 
   const latlngs = [];
@@ -182,3 +245,10 @@ renderHero();
 renderDayNav();
 renderDays();
 initMap();
+
+// 記下日期列高度，單日模式時地圖才能精準黏在它正下方
+const navEl = document.getElementById("dayNav");
+document.documentElement.style.setProperty("--nav-h", navEl.offsetHeight + "px");
+
+// 預設進入「全部」總覽
+showAllMode();

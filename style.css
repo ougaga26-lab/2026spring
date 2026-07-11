@@ -304,6 +304,55 @@ body {
   letter-spacing: 0.03em;
 }
 
+/* ---------- 「全部」pill ---------- */
+
+.daynav__item--all {
+  width: auto;
+  padding: 0 14px;
+  border-radius: 19px;
+  font-size: 13px;
+}
+
+/* ---------- 單日模式：地圖與日期列黏在上方 ---------- */
+
+body.day-mode .daynav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--paper);
+}
+
+body.day-mode .mapcard {
+  position: sticky;
+  top: var(--nav-h, 56px);
+  z-index: 10;
+}
+
+/* ---------- 可點的景點 + Google Maps 連結 ---------- */
+
+.tl-item--geo { cursor: pointer; }
+.tl-item--geo:hover .tl-title { color: var(--sea); }
+
+.tl-gmap,
+.hotel__gmap {
+  display: inline-block;
+  margin-top: 5px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--sea);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(44, 107, 107, 0.4);
+  letter-spacing: 0.02em;
+}
+
+.tl-gmap:hover,
+.hotel__gmap:hover {
+  color: var(--vermillion);
+  border-bottom-color: rgba(184, 69, 46, 0.5);
+}
+
+.hotel__body { flex: 1; min-width: 0; }
+
 /* Leaflet popup theming */
 .leaflet-popup-content-wrapper {
   border-radius: 10px;
