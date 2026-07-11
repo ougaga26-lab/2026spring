@@ -22,8 +22,8 @@ const TRIP = {
       title: "抵達名古屋",
       timeline: [
         { kind: "transport", time: "", title: "抵達中部國際空港（Centrair）", note: "入境、領行李後前往機場車站", lat: 34.8584, lng: 136.8051 },
-        { kind: "transport", time: "", title: "名鐵 μ-SKY → 名鐵名古屋駅", note: "機場特急直達，約28分（不用換車）" },
-        { kind: "note", time: "", title: "飯店 Check-in", note: "飯店就在名古屋車站旁，時差不大不用特別調整" }
+        { kind: "transport", time: "", title: "名鐵 μ-SKY → 名鐵名古屋駅", note: "機場特急直達，約28分（不用換車）", lat: 35.1699, lng: 136.8817 },
+        { kind: "note", time: "", title: "飯店 Check-in", note: "飯店就在名古屋車站旁，時差不大不用特別調整", lat: 35.1678564, lng: 136.8799096 }
       ],
       hotel: {
         name: "相鐵FRESA INN 名古屋站新幹線口",
