@@ -290,6 +290,23 @@ body {
   line-height: 1.5;
 }
 
+/* ---------- 每日行李提示 ---------- */
+
+.luggage {
+  margin: 0 18px 18px;
+  padding: 10px 13px;
+  border-radius: 10px;
+  background: rgba(171, 130, 38, 0.07);
+  border: 1px dashed rgba(171, 130, 38, 0.38);
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+}
+
+.luggage__icon { font-size: 15px; line-height: 1.5; flex: 0 0 auto; }
+.luggage__text { font-size: 12px; color: var(--ink-soft); line-height: 1.55; }
+.luggage__text b { color: var(--gold); font-weight: 700; letter-spacing: 0.04em; }
+
 /* ---------- Footer ---------- */
 
 .footer {

@@ -108,6 +108,13 @@ function renderDays() {
 
     let alertHtml = day.alert ? `<div class="alert">⚠️ ${day.alert}</div>` : "";
 
+    let luggageHtml = day.luggage ? `
+      <div class="luggage">
+        <div class="luggage__icon">🧳</div>
+        <div class="luggage__text"><b>行李</b>　${day.luggage}</div>
+      </div>
+    ` : "";
+
     let hotelHtml = day.hotel ? `
       <div class="hotel">
         <div class="hotel__icon">🏨</div>
@@ -134,6 +141,7 @@ function renderDays() {
         <div class="day__timeline">${timelineHtml}</div>
         ${alertHtml}
         ${hotelHtml}
+        ${luggageHtml}
       </div>
     `;
 
